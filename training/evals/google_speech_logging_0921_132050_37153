@@ -1,0 +1,198 @@
+2023-09-21:13:20:58,452 INFO     [param_server.py:13] End up with cuda device tensor([0.6383], device='cuda:0')
+2023-09-21:13:20:58,977 INFO     [param_server.py:616] ====Start to initialize dataset
+2023-09-21:13:20:58,978 INFO     [flLibs.py:59] ====Initialize the model
+2023-09-21:13:21:26,185 INFO     [learner.py:13] End up with cuda device tensor([0.4837], device='cuda:0')
+2023-09-21:13:21:26,186 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+2023-09-21:13:21:26,342 INFO     [learner.py:13] End up with cuda device tensor([0.0841], device='cuda:1')
+2023-09-21:13:21:26,344 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+2023-09-21:13:21:26,370 INFO     [learner.py:13] End up with cuda device tensor([0.6156], device='cuda:2')
+2023-09-21:13:21:26,371 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+2023-09-21:13:21:26,407 INFO     [learner.py:13] End up with cuda device tensor([0.4074], device='cuda:3')
+2023-09-21:13:21:26,408 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+2023-09-21:13:21:26,645 INFO     [learner.py:709] ====Start to initialize dataset
+2023-09-21:13:21:26,645 INFO     [flLibs.py:59] ====Initialize the model
+2023-09-21:13:21:26,809 INFO     [learner.py:709] ====Start to initialize dataset
+2023-09-21:13:21:26,809 INFO     [flLibs.py:59] ====Initialize the model
+2023-09-21:13:21:26,841 INFO     [learner.py:709] ====Start to initialize dataset
+2023-09-21:13:21:26,841 INFO     [flLibs.py:59] ====Initialize the model
+2023-09-21:13:21:26,869 INFO     [learner.py:709] ====Start to initialize dataset
+2023-09-21:13:21:26,869 INFO     [flLibs.py:59] ====Initialize the model
+2023-09-21:13:21:27,928 INFO     [learner.py:732] ==== Starting training data partitioner =====
+2023-09-21:13:21:27,958 INFO     [divide_data.py:95] ====Initiating DataPartitioner takes 0.028566360473632812 s
+
+2023-09-21:13:21:27,959 INFO     [learner.py:735] ==== Finished training data partitioner =====
+2023-09-21:13:21:27,970 INFO     [learner.py:732] ==== Starting training data partitioner =====
+2023-09-21:13:21:28,2 INFO     [learner.py:732] ==== Starting training data partitioner =====
+2023-09-21:13:21:28,11 INFO     [divide_data.py:95] ====Initiating DataPartitioner takes 0.04053831100463867 s
+
+2023-09-21:13:21:28,12 INFO     [learner.py:735] ==== Finished training data partitioner =====
+2023-09-21:13:21:28,34 INFO     [divide_data.py:95] ====Initiating DataPartitioner takes 0.03131246566772461 s
+
+2023-09-21:13:21:28,34 INFO     [learner.py:735] ==== Finished training data partitioner =====
+2023-09-21:13:21:28,109 INFO     [learner.py:732] ==== Starting training data partitioner =====
+2023-09-21:13:21:28,135 INFO     [divide_data.py:95] ====Initiating DataPartitioner takes 0.025101661682128906 s
+
+2023-09-21:13:21:28,135 INFO     [learner.py:735] ==== Finished training data partitioner =====
+2023-09-21:13:21:30,633 INFO     [param_server.py:98] ====Info of all feasible clients {'total_feasible_clients': 491, 'total_length': 33443}
+2023-09-21:13:21:31,17 INFO     [param_server.py:197] ====PS: get in run()
+2023-09-21:13:21:31,19 INFO     [learner.py:748] ==== Starting testing data partitioner =====
+2023-09-21:13:21:31,19 INFO     [learner.py:748] ==== Starting testing data partitioner =====
+2023-09-21:13:21:31,19 INFO     [divide_data.py:95] ====Initiating DataPartitioner takes 0.0003204345703125 s
+
+2023-09-21:13:21:31,19 INFO     [learner.py:750] ==== Finished testing data partitioner =====
+2023-09-21:13:21:31,20 INFO     [divide_data.py:95] ====Initiating DataPartitioner takes 0.0005133152008056641 s
+
+2023-09-21:13:21:31,20 INFO     [learner.py:750] ==== Finished testing data partitioner =====
+2023-09-21:13:21:31,19 INFO     [learner.py:748] ==== Starting testing data partitioner =====
+2023-09-21:13:21:31,20 INFO     [divide_data.py:388] ========= Start of Random Partition =========
+
+2023-09-21:13:21:31,21 INFO     [divide_data.py:95] ====Initiating DataPartitioner takes 0.000492095947265625 s
+
+2023-09-21:13:21:31,21 INFO     [learner.py:750] ==== Finished testing data partitioner =====
+2023-09-21:13:21:31,21 INFO     [divide_data.py:388] ========= Start of Random Partition =========
+
+2023-09-21:13:21:31,21 INFO     [learner.py:748] ==== Starting testing data partitioner =====
+2023-09-21:13:21:31,22 INFO     [divide_data.py:388] ========= Start of Random Partition =========
+
+2023-09-21:13:21:31,22 INFO     [divide_data.py:95] ====Initiating DataPartitioner takes 0.00047326087951660156 s
+
+2023-09-21:13:21:31,22 INFO     [learner.py:750] ==== Finished testing data partitioner =====
+2023-09-21:13:21:31,23 INFO     [divide_data.py:509] Raw class per worker is : array([[14., 20., 18., 21., 11., 14., 14.,  6., 20., 11.,  9., 15., 16.,
+        14., 11., 12.,  6., 10., 17.,  6.],
+       [11., 15., 20., 12., 14., 12., 20., 10., 10., 20.,  8., 16., 12.,
+         6., 10., 24.,  8.,  4., 20., 13.],
+       [12.,  9., 17., 16.,  7., 15., 20., 10., 13., 19., 14., 16., 19.,
+        10., 11., 16.,  7.,  5., 15., 14.],
+       [ 7., 10., 17., 17., 11., 28., 14., 13., 16., 23., 17., 12., 12.,
+         7.,  5., 11.,  9.,  6., 17., 13.]])
+
+2023-09-21:13:21:31,23 INFO     [divide_data.py:510] ========= End of Class/Worker =========
+
+2023-09-21:13:21:31,24 INFO     [divide_data.py:388] ========= Start of Random Partition =========
+
+2023-09-21:13:21:31,25 INFO     [divide_data.py:509] Raw class per worker is : array([[14., 20., 18., 21., 11., 14., 14.,  6., 20., 11.,  9., 15., 16.,
+        14., 11., 12.,  6., 10., 17.,  6.],
+       [11., 15., 20., 12., 14., 12., 20., 10., 10., 20.,  8., 16., 12.,
+         6., 10., 24.,  8.,  4., 20., 13.],
+       [12.,  9., 17., 16.,  7., 15., 20., 10., 13., 19., 14., 16., 19.,
+        10., 11., 16.,  7.,  5., 15., 14.],
+       [ 7., 10., 17., 17., 11., 28., 14., 13., 16., 23., 17., 12., 12.,
+         7.,  5., 11.,  9.,  6., 17., 13.]])
+
+2023-09-21:13:21:31,25 INFO     [divide_data.py:510] ========= End of Class/Worker =========
+
+2023-09-21:13:21:31,26 INFO     [divide_data.py:509] Raw class per worker is : array([[14., 20., 18., 21., 11., 14., 14.,  6., 20., 11.,  9., 15., 16.,
+        14., 11., 12.,  6., 10., 17.,  6.],
+       [11., 15., 20., 12., 14., 12., 20., 10., 10., 20.,  8., 16., 12.,
+         6., 10., 24.,  8.,  4., 20., 13.],
+       [12.,  9., 17., 16.,  7., 15., 20., 10., 13., 19., 14., 16., 19.,
+        10., 11., 16.,  7.,  5., 15., 14.],
+       [ 7., 10., 17., 17., 11., 28., 14., 13., 16., 23., 17., 12., 12.,
+         7.,  5., 11.,  9.,  6., 17., 13.]])
+
+2023-09-21:13:21:31,26 INFO     [divide_data.py:510] ========= End of Class/Worker =========
+
+2023-09-21:13:21:31,28 INFO     [learner.py:445] ====Worker: Start running
+2023-09-21:13:21:31,29 INFO     [learner.py:445] ====Worker: Start running
+2023-09-21:13:21:31,30 INFO     [learner.py:445] ====Worker: Start running
+2023-09-21:13:21:31,30 INFO     [divide_data.py:509] Raw class per worker is : array([[14., 20., 18., 21., 11., 14., 14.,  6., 20., 11.,  9., 15., 16.,
+        14., 11., 12.,  6., 10., 17.,  6.],
+       [11., 15., 20., 12., 14., 12., 20., 10., 10., 20.,  8., 16., 12.,
+         6., 10., 24.,  8.,  4., 20., 13.],
+       [12.,  9., 17., 16.,  7., 15., 20., 10., 13., 19., 14., 16., 19.,
+        10., 11., 16.,  7.,  5., 15., 14.],
+       [ 7., 10., 17., 17., 11., 28., 14., 13., 16., 23., 17., 12., 12.,
+         7.,  5., 11.,  9.,  6., 17., 13.]])
+
+2023-09-21:13:21:31,36 INFO     [divide_data.py:510] ========= End of Class/Worker =========
+
+2023-09-21:13:21:31,41 INFO     [learner.py:445] ====Worker: Start running
+2023-09-21:13:21:31,122 INFO     [learner.py:483] 
+Namespace(adam_epsilon=1e-08, adaptive_epoch_beta=1, backend='nccl', batch_size=16, bidirectional=True, blacklist_max_len=0.3, blacklist_rounds=-1, block_size=64, cache_dir=None, capacity_bin=True, clf_block_size=100, client_path='/disk7T/ypguo/FedScale/benchmark/dataset/data/device_info/client_device_capacity', clip_bound=0.98, clock_factor=6.092057761732853, conf_path='~/dataset/', config_name=None, cut_off_util=0.4, data_dir='/disk7T/ypguo/FedScale/benchmark/dataset/data/speech_commands/google_speech', data_mapfile='/disk7T/ypguo/FedScale/benchmark/dataset/speech_commands/clientDataMap', data_set='google_speech', decay_epoch=15.0, decay_factor=0.95, display_step=20, do_eval=False, do_train=False, dropout_high=0.6, dropout_low=0.1, dump_epoch=1000, duplicate_data=1, enable_adapt_local_epoch=False, enable_dropout=False, enable_importance=False, enable_obs_client=False, enable_obs_importance=False, enable_obs_local_epoch=False, enforce_random=False, epochs=1000, eval_all_checkpoints=False, eval_data_file='', eval_interval=10, eval_interval_prior=9999999, evaluate_during_training=False, exploration_alpha=0.3, exploration_decay=0.95, exploration_factor=0.9, exploration_min=0.2, filter_class=0, filter_less=30, filter_more=100000.0, finetune=False, fixed_clients=False, force_read=False, forward_pass=False, fp16=False, fp16_opt_level='O1', full_gradient_interval=20, gpu_device=3, gradient_accumulation_steps=1, gradient_policy='yogi', hetero_allocation='1.0-1.0-1.0-1.0-1.0-1.0', heterogeneity=1.0, hidden_layers=7, hidden_size=256, home_path='', input_dim=0, is_even_avg=True, job_name='google_speech', labels_path='labels.json', learners='1-2-3-4', learning_rate=0.04, line_by_line=False, load_epoch=1, load_model=False, load_time_stamp='0615_194942', local_rank=-1, log_path='/disk7T/ypguo/PyramidFL/training/evals', logging_steps=500, loss_decay=0.2, malicious_clients=0, manager_port=1675, max_grad_norm=1.0, max_iter_store=100, max_steps=-1, min_learning_rate=0.0001, mlm=True, mlm_probability=0.1, model='resnet34', model_avg=True, model_name_or_path=None, model_path=None, model_size=65536, model_type='', no_cuda=False, noise_dir=None, noise_factor=0, noise_max=0.5, noise_min=0.0, noise_prob=0.4, num_class=20, num_loaders=2, num_train_epochs=1.0, output_dim=0, output_dir=None, overcommit=1.3, overwrite_cache=False, overwrite_output_dir=False, pacer_delta=30.0, pacer_step=20, per_gpu_eval_batch_size=4, per_gpu_train_batch_size=4, proxy_avg=False, proxy_mu=0.1, ps_ip='user-Server', ps_port='21420', read_models_path=False, release_cache=False, resampling_interval=1, rnn_type='lstm', round_penalty=2.0, round_threshold=40.0, run_all=False, sample_mode='random', sample_rate=16000, sample_seed=233, sample_window=5.0, sampler_path=None, save_path='./', save_steps=500, save_total_limit=None, score_mode='loss', seed=42, sequential='0', server_ip='', server_port='', should_continue=False, single_sim=0, skip_partition=False, sleep_up=0, spec_augment=False, speed_volume_perturb=False, stale_threshold=0, task='speech', test_bsz=128, test_interval=20, test_manifest='data/test_manifest.csv', test_only=False, test_ratio=1.0, test_train_data=False, this_rank=4, threads=4, time_stamp='0921_132050_37153', timeout=9999999, to_device='cuda', tokenizer_name=None, total_worker=10, train_data_file='', train_manifest='data/train_manifest.csv', upload_epoch=5, user_trace='/disk7T/ypguo/FedScale/benchmark/dataset/data/device_info/client_behave_trace', validate_interval=999999, vocab_tag_size=500, vocab_token_size=10000, warmup_steps=0, weight_decay=0.0, window='hamming', window_size=0.02, window_stride=0.01, yogi_beta=0.999, yogi_beta2=-1, yogi_eta=0.005, yogi_tau=0.001, zipf_alpha='5')
+
+2023-09-21:13:21:31,125 INFO     [learner.py:483] 
+Namespace(adam_epsilon=1e-08, adaptive_epoch_beta=1, backend='nccl', batch_size=16, bidirectional=True, blacklist_max_len=0.3, blacklist_rounds=-1, block_size=64, cache_dir=None, capacity_bin=True, clf_block_size=100, client_path='/disk7T/ypguo/FedScale/benchmark/dataset/data/device_info/client_device_capacity', clip_bound=0.98, clock_factor=6.092057761732853, conf_path='~/dataset/', config_name=None, cut_off_util=0.4, data_dir='/disk7T/ypguo/FedScale/benchmark/dataset/data/speech_commands/google_speech', data_mapfile='/disk7T/ypguo/FedScale/benchmark/dataset/speech_commands/clientDataMap', data_set='google_speech', decay_epoch=15.0, decay_factor=0.95, display_step=20, do_eval=False, do_train=False, dropout_high=0.6, dropout_low=0.1, dump_epoch=1000, duplicate_data=1, enable_adapt_local_epoch=False, enable_dropout=False, enable_importance=False, enable_obs_client=False, enable_obs_importance=False, enable_obs_local_epoch=False, enforce_random=False, epochs=1000, eval_all_checkpoints=False, eval_data_file='', eval_interval=10, eval_interval_prior=9999999, evaluate_during_training=False, exploration_alpha=0.3, exploration_decay=0.95, exploration_factor=0.9, exploration_min=0.2, filter_class=0, filter_less=30, filter_more=100000.0, finetune=False, fixed_clients=False, force_read=False, forward_pass=False, fp16=False, fp16_opt_level='O1', full_gradient_interval=20, gpu_device=1, gradient_accumulation_steps=1, gradient_policy='yogi', hetero_allocation='1.0-1.0-1.0-1.0-1.0-1.0', heterogeneity=1.0, hidden_layers=7, hidden_size=256, home_path='', input_dim=0, is_even_avg=True, job_name='google_speech', labels_path='labels.json', learners='1-2-3-4', learning_rate=0.04, line_by_line=False, load_epoch=1, load_model=False, load_time_stamp='0615_194942', local_rank=-1, log_path='/disk7T/ypguo/PyramidFL/training/evals', logging_steps=500, loss_decay=0.2, malicious_clients=0, manager_port=1675, max_grad_norm=1.0, max_iter_store=100, max_steps=-1, min_learning_rate=0.0001, mlm=True, mlm_probability=0.1, model='resnet34', model_avg=True, model_name_or_path=None, model_path=None, model_size=65536, model_type='', no_cuda=False, noise_dir=None, noise_factor=0, noise_max=0.5, noise_min=0.0, noise_prob=0.4, num_class=20, num_loaders=2, num_train_epochs=1.0, output_dim=0, output_dir=None, overcommit=1.3, overwrite_cache=False, overwrite_output_dir=False, pacer_delta=30.0, pacer_step=20, per_gpu_eval_batch_size=4, per_gpu_train_batch_size=4, proxy_avg=False, proxy_mu=0.1, ps_ip='user-Server', ps_port='21420', read_models_path=False, release_cache=False, resampling_interval=1, rnn_type='lstm', round_penalty=2.0, round_threshold=40.0, run_all=False, sample_mode='random', sample_rate=16000, sample_seed=233, sample_window=5.0, sampler_path=None, save_path='./', save_steps=500, save_total_limit=None, score_mode='loss', seed=42, sequential='0', server_ip='', server_port='', should_continue=False, single_sim=0, skip_partition=False, sleep_up=0, spec_augment=False, speed_volume_perturb=False, stale_threshold=0, task='speech', test_bsz=128, test_interval=20, test_manifest='data/test_manifest.csv', test_only=False, test_ratio=1.0, test_train_data=False, this_rank=2, threads=4, time_stamp='0921_132050_37153', timeout=9999999, to_device='cuda', tokenizer_name=None, total_worker=10, train_data_file='', train_manifest='data/train_manifest.csv', upload_epoch=5, user_trace='/disk7T/ypguo/FedScale/benchmark/dataset/data/device_info/client_behave_trace', validate_interval=999999, vocab_tag_size=500, vocab_token_size=10000, warmup_steps=0, weight_decay=0.0, window='hamming', window_size=0.02, window_stride=0.01, yogi_beta=0.999, yogi_beta2=-1, yogi_eta=0.005, yogi_tau=0.001, zipf_alpha='5')
+
+2023-09-21:13:21:31,160 INFO     [learner.py:483] 
+Namespace(adam_epsilon=1e-08, adaptive_epoch_beta=1, backend='nccl', batch_size=16, bidirectional=True, blacklist_max_len=0.3, blacklist_rounds=-1, block_size=64, cache_dir=None, capacity_bin=True, clf_block_size=100, client_path='/disk7T/ypguo/FedScale/benchmark/dataset/data/device_info/client_device_capacity', clip_bound=0.98, clock_factor=6.092057761732853, conf_path='~/dataset/', config_name=None, cut_off_util=0.4, data_dir='/disk7T/ypguo/FedScale/benchmark/dataset/data/speech_commands/google_speech', data_mapfile='/disk7T/ypguo/FedScale/benchmark/dataset/speech_commands/clientDataMap', data_set='google_speech', decay_epoch=15.0, decay_factor=0.95, display_step=20, do_eval=False, do_train=False, dropout_high=0.6, dropout_low=0.1, dump_epoch=1000, duplicate_data=1, enable_adapt_local_epoch=False, enable_dropout=False, enable_importance=False, enable_obs_client=False, enable_obs_importance=False, enable_obs_local_epoch=False, enforce_random=False, epochs=1000, eval_all_checkpoints=False, eval_data_file='', eval_interval=10, eval_interval_prior=9999999, evaluate_during_training=False, exploration_alpha=0.3, exploration_decay=0.95, exploration_factor=0.9, exploration_min=0.2, filter_class=0, filter_less=30, filter_more=100000.0, finetune=False, fixed_clients=False, force_read=False, forward_pass=False, fp16=False, fp16_opt_level='O1', full_gradient_interval=20, gpu_device=2, gradient_accumulation_steps=1, gradient_policy='yogi', hetero_allocation='1.0-1.0-1.0-1.0-1.0-1.0', heterogeneity=1.0, hidden_layers=7, hidden_size=256, home_path='', input_dim=0, is_even_avg=True, job_name='google_speech', labels_path='labels.json', learners='1-2-3-4', learning_rate=0.04, line_by_line=False, load_epoch=1, load_model=False, load_time_stamp='0615_194942', local_rank=-1, log_path='/disk7T/ypguo/PyramidFL/training/evals', logging_steps=500, loss_decay=0.2, malicious_clients=0, manager_port=1675, max_grad_norm=1.0, max_iter_store=100, max_steps=-1, min_learning_rate=0.0001, mlm=True, mlm_probability=0.1, model='resnet34', model_avg=True, model_name_or_path=None, model_path=None, model_size=65536, model_type='', no_cuda=False, noise_dir=None, noise_factor=0, noise_max=0.5, noise_min=0.0, noise_prob=0.4, num_class=20, num_loaders=2, num_train_epochs=1.0, output_dim=0, output_dir=None, overcommit=1.3, overwrite_cache=False, overwrite_output_dir=False, pacer_delta=30.0, pacer_step=20, per_gpu_eval_batch_size=4, per_gpu_train_batch_size=4, proxy_avg=False, proxy_mu=0.1, ps_ip='user-Server', ps_port='21420', read_models_path=False, release_cache=False, resampling_interval=1, rnn_type='lstm', round_penalty=2.0, round_threshold=40.0, run_all=False, sample_mode='random', sample_rate=16000, sample_seed=233, sample_window=5.0, sampler_path=None, save_path='./', save_steps=500, save_total_limit=None, score_mode='loss', seed=42, sequential='0', server_ip='', server_port='', should_continue=False, single_sim=0, skip_partition=False, sleep_up=0, spec_augment=False, speed_volume_perturb=False, stale_threshold=0, task='speech', test_bsz=128, test_interval=20, test_manifest='data/test_manifest.csv', test_only=False, test_ratio=1.0, test_train_data=False, this_rank=3, threads=4, time_stamp='0921_132050_37153', timeout=9999999, to_device='cuda', tokenizer_name=None, total_worker=10, train_data_file='', train_manifest='data/train_manifest.csv', upload_epoch=5, user_trace='/disk7T/ypguo/FedScale/benchmark/dataset/data/device_info/client_behave_trace', validate_interval=999999, vocab_tag_size=500, vocab_token_size=10000, warmup_steps=0, weight_decay=0.0, window='hamming', window_size=0.02, window_stride=0.01, yogi_beta=0.999, yogi_beta2=-1, yogi_eta=0.005, yogi_tau=0.001, zipf_alpha='5')
+
+2023-09-21:13:21:31,204 INFO     [learner.py:483] 
+Namespace(adam_epsilon=1e-08, adaptive_epoch_beta=1, backend='nccl', batch_size=16, bidirectional=True, blacklist_max_len=0.3, blacklist_rounds=-1, block_size=64, cache_dir=None, capacity_bin=True, clf_block_size=100, client_path='/disk7T/ypguo/FedScale/benchmark/dataset/data/device_info/client_device_capacity', clip_bound=0.98, clock_factor=6.092057761732853, conf_path='~/dataset/', config_name=None, cut_off_util=0.4, data_dir='/disk7T/ypguo/FedScale/benchmark/dataset/data/speech_commands/google_speech', data_mapfile='/disk7T/ypguo/FedScale/benchmark/dataset/speech_commands/clientDataMap', data_set='google_speech', decay_epoch=15.0, decay_factor=0.95, display_step=20, do_eval=False, do_train=False, dropout_high=0.6, dropout_low=0.1, dump_epoch=1000, duplicate_data=1, enable_adapt_local_epoch=False, enable_dropout=False, enable_importance=False, enable_obs_client=False, enable_obs_importance=False, enable_obs_local_epoch=False, enforce_random=False, epochs=1000, eval_all_checkpoints=False, eval_data_file='', eval_interval=10, eval_interval_prior=9999999, evaluate_during_training=False, exploration_alpha=0.3, exploration_decay=0.95, exploration_factor=0.9, exploration_min=0.2, filter_class=0, filter_less=30, filter_more=100000.0, finetune=False, fixed_clients=False, force_read=False, forward_pass=False, fp16=False, fp16_opt_level='O1', full_gradient_interval=20, gpu_device=0, gradient_accumulation_steps=1, gradient_policy='yogi', hetero_allocation='1.0-1.0-1.0-1.0-1.0-1.0', heterogeneity=1.0, hidden_layers=7, hidden_size=256, home_path='', input_dim=0, is_even_avg=True, job_name='google_speech', labels_path='labels.json', learners='1-2-3-4', learning_rate=0.04, line_by_line=False, load_epoch=1, load_model=False, load_time_stamp='0615_194942', local_rank=-1, log_path='/disk7T/ypguo/PyramidFL/training/evals', logging_steps=500, loss_decay=0.2, malicious_clients=0, manager_port=1675, max_grad_norm=1.0, max_iter_store=100, max_steps=-1, min_learning_rate=0.0001, mlm=True, mlm_probability=0.1, model='resnet34', model_avg=True, model_name_or_path=None, model_path=None, model_size=65536, model_type='', no_cuda=False, noise_dir=None, noise_factor=0, noise_max=0.5, noise_min=0.0, noise_prob=0.4, num_class=20, num_loaders=2, num_train_epochs=1.0, output_dim=0, output_dir=None, overcommit=1.3, overwrite_cache=False, overwrite_output_dir=False, pacer_delta=30.0, pacer_step=20, per_gpu_eval_batch_size=4, per_gpu_train_batch_size=4, proxy_avg=False, proxy_mu=0.1, ps_ip='user-Server', ps_port='21420', read_models_path=False, release_cache=False, resampling_interval=1, rnn_type='lstm', round_penalty=2.0, round_threshold=40.0, run_all=False, sample_mode='random', sample_rate=16000, sample_seed=233, sample_window=5.0, sampler_path=None, save_path='./', save_steps=500, save_total_limit=None, score_mode='loss', seed=42, sequential='0', server_ip='', server_port='', should_continue=False, single_sim=0, skip_partition=False, sleep_up=0, spec_augment=False, speed_volume_perturb=False, stale_threshold=0, task='speech', test_bsz=128, test_interval=20, test_manifest='data/test_manifest.csv', test_only=False, test_ratio=1.0, test_train_data=False, this_rank=1, threads=4, time_stamp='0921_132050_37153', timeout=9999999, to_device='cuda', tokenizer_name=None, total_worker=10, train_data_file='', train_manifest='data/train_manifest.csv', upload_epoch=5, user_trace='/disk7T/ypguo/FedScale/benchmark/dataset/data/device_info/client_behave_trace', validate_interval=999999, vocab_tag_size=500, vocab_token_size=10000, warmup_steps=0, weight_decay=0.0, window='hamming', window_size=0.02, window_stride=0.01, yogi_beta=0.999, yogi_beta2=-1, yogi_eta=0.005, yogi_tau=0.001, zipf_alpha='5')
+
+2023-09-21:13:21:31,664 INFO     [learner.py:526] ====Start train round 1
+2023-09-21:13:21:31,680 INFO     [learner.py:526] ====Start train round 1
+2023-09-21:13:21:31,776 INFO     [learner.py:164] Start to run client 2 on rank 2...
+====Worker: init_myprocesses
+Begin!
+2023-09-21:13:21:31,798 INFO     [learner.py:526] ====Start train round 1
+2023-09-21:13:21:31,808 INFO     [learner.py:526] ====Start train round 1
+2023-09-21:13:21:31,823 INFO     [learner.py:164] Start to run client 1 on rank 1...
+====Worker: init_myprocesses
+Begin!
+2023-09-21:13:21:32,19 INFO     [learner.py:164] Start to run client 6 on rank 3...
+====Worker: init_myprocesses
+Begin!
+2023-09-21:13:21:32,25 INFO     [learner.py:164] Start to run client 7 on rank 4...
+====Worker: init_myprocesses
+Begin!
+THCudaCheck FAIL file=/pytorch/aten/src/THC/THCGeneral.cpp line=383 error=8 : invalid device function
+2023-09-21:13:21:32,569 INFO     [learner.py:403] ====Error: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED, <class 'RuntimeError'>, learner.py, 312
+THCudaCheck FAIL file=/pytorch/aten/src/THC/THCGeneral.cpp line=383 error=8 : invalid device function
+2023-09-21:13:21:32,700 INFO     [learner.py:403] ====Error: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED, <class 'RuntimeError'>, learner.py, 312
+THCudaCheck FAIL file=/pytorch/aten/src/THC/THCGeneral.cpp line=383 error=8 : invalid device function
+2023-09-21:13:21:33,344 INFO     [learner.py:403] ====Error: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED, <class 'RuntimeError'>, learner.py, 312
+THCudaCheck FAIL file=/pytorch/aten/src/THC/THCGeneral.cpp line=383 error=8 : invalid device function
+2023-09-21:13:21:33,471 INFO     [learner.py:403] ====Error: cuDNN error: CUDNN_STATUS_EXECUTION_FAILED, <class 'RuntimeError'>, learner.py, 312
+2023-09-21:13:21:33,680 INFO     [learner.py:437] ====Failed to run client 1
+2023-09-21:13:21:33,680 INFO     [learner.py:439] Completed to run client 1
+2023-09-21:13:21:33,681 INFO     [learner.py:606] ====Pushing takes 0.0004634857177734375 s
+2023-09-21:13:21:33,685 INFO     [param_server.py:298] ====Start to merge models
+2023-09-21:13:21:33,687 INFO     [param_server.py:364] ====Done handling rank 1, with ratio 0, now collected 0 clients
+2023-09-21:13:21:33,687 INFO     [param_server.py:418] Lock worker 1 with localStep 1 , while globalStep is 0
+
+2023-09-21:13:21:33,936 INFO     [learner.py:437] ====Failed to run client 2
+2023-09-21:13:21:33,936 INFO     [learner.py:439] Completed to run client 2
+2023-09-21:13:21:33,936 INFO     [learner.py:606] ====Pushing takes 0.0003654956817626953 s
+2023-09-21:13:21:33,937 INFO     [param_server.py:298] ====Start to merge models
+2023-09-21:13:21:33,937 INFO     [param_server.py:364] ====Done handling rank 2, with ratio 0, now collected 0 clients
+2023-09-21:13:21:33,937 INFO     [param_server.py:418] Lock worker 2 with localStep 1 , while globalStep is 0
+
+2023-09-21:13:21:33,987 INFO     [learner.py:437] ====Failed to run client 7
+2023-09-21:13:21:33,987 INFO     [learner.py:439] Completed to run client 7
+2023-09-21:13:21:33,988 INFO     [learner.py:606] ====Pushing takes 0.0004754066467285156 s
+2023-09-21:13:21:33,988 INFO     [param_server.py:298] ====Start to merge models
+2023-09-21:13:21:33,988 INFO     [param_server.py:364] ====Done handling rank 4, with ratio 0, now collected 0 clients
+2023-09-21:13:21:33,988 INFO     [param_server.py:418] Lock worker 4 with localStep 1 , while globalStep is 0
+
+2023-09-21:13:21:34,130 INFO     [learner.py:437] ====Failed to run client 6
+2023-09-21:13:21:34,130 INFO     [learner.py:439] Completed to run client 6
+2023-09-21:13:21:34,131 INFO     [learner.py:606] ====Pushing takes 0.0005402565002441406 s
+2023-09-21:13:21:34,131 INFO     [param_server.py:298] ====Start to merge models
+2023-09-21:13:21:34,131 INFO     [param_server.py:364] ====Done handling rank 3, with ratio 0, now collected 0 clients
+2023-09-21:13:21:34,131 INFO     [param_server.py:389] ====After aggregation in epoch: 0, virtual_clock: 0.0, top_1: : 0.0 % (0.0), top_5: : 0.0 % (0.0), test loss: 0.0, test len: 4.0
+2023-09-21:13:21:34,132 INFO     [param_server.py:418] Lock worker 3 with localStep 1 , while globalStep is 1
+
+2023-09-21:13:21:34,132 INFO     [param_server.py:449] ====Epoch 2 completes 0 clients with loss 0, sampled rewards are: 
+ {} 
+==========
+2023-09-21:13:21:34,132 INFO     [param_server.py:458] ====Start to sample for epoch 2, global virtualClock: 0.0, round_duration: 0.0
+2023-09-21:13:21:34,137 INFO     [param_server.py:475] ====Try to resample clients, final takes: 
+ [1286, 38, 1835, 189, 1315, 348, 831, 140, 1510, 584]
+2023-09-21:13:21:35,244 INFO     [param_server.py:575] ====Error: list index out of range, <class 'IndexError'>, param_server.py, 535
+====Error: list index out of range
+
+Traceback (most recent call last):
+  File "/disk7T/ypguo/PyramidFL/training/param_server.py", line 624, in <module>
+    q, param_q, stop_signal, run, args.backend
+  File "/disk7T/ypguo/PyramidFL/training/param_server.py", line 130, in init_myprocesses
+    fn(model, queue, param_q, stop_signal, clientSampler)
+  File "/disk7T/ypguo/PyramidFL/training/param_server.py", line 273, in run
+    if not queue.empty():
+  File "<string>", line 2, in empty
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/managers.py", line 757, in _callmethod
+    kind, result = conn.recv()
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/connection.py", line 408, in _recv_bytes
+    size, = struct.unpack("!i", buf.getvalue())
+KeyboardInterrupt

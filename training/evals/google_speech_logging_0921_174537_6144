@@ -1,0 +1,51 @@
+2023-09-21:17:45:40,995 INFO     [param_server.py:13] End up with cuda device tensor([0.3627], device='cuda:0')
+2023-09-21:17:45:41,437 INFO     [param_server.py:616] ====Start to initialize dataset
+2023-09-21:17:45:41,438 INFO     [flLibs.py:74] ====Initialize the model
+2023-09-21:17:46:10,713 INFO     [learner.py:13] End up with cuda device tensor([0.7375], device='cuda:2')
+2023-09-21:17:46:10,713 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+2023-09-21:17:46:10,810 INFO     [learner.py:13] End up with cuda device tensor([0.9324], device='cuda:3')
+2023-09-21:17:46:10,810 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+2023-09-21:17:46:10,899 INFO     [learner.py:13] End up with cuda device tensor([0.2261], device='cuda:1')
+2023-09-21:17:46:10,899 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+2023-09-21:17:46:10,998 INFO     [learner.py:13] End up with cuda device tensor([0.6983], device='cuda:0')
+2023-09-21:17:46:10,999 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+2023-09-21:17:46:11,153 INFO     [learner.py:709] ====Start to initialize dataset
+2023-09-21:17:46:11,153 INFO     [flLibs.py:74] ====Initialize the model
+2023-09-21:17:46:11,249 INFO     [learner.py:709] ====Start to initialize dataset
+2023-09-21:17:46:11,249 INFO     [flLibs.py:74] ====Initialize the model
+2023-09-21:17:46:11,345 INFO     [learner.py:709] ====Start to initialize dataset
+2023-09-21:17:46:11,345 INFO     [flLibs.py:74] ====Initialize the model
+2023-09-21:17:46:11,441 INFO     [learner.py:709] ====Start to initialize dataset
+2023-09-21:17:46:11,441 INFO     [flLibs.py:74] ====Initialize the model
+Traceback (most recent call last):
+  File "/disk7T/ypguo/PyramidFL/training/learner.py", line 712, in <module>
+    model, train_dataset, test_dataset = init_dataset()
+  File "/disk7T/ypguo/PyramidFL/training/flLibs.py", line 241, in init_dataset
+    os.path.join(args.data_dir, bkg), data_aug_transform)
+  File "/disk7T/ypguo/PyramidFL/training/utils/speech.py", line 150, in __init__
+    s, sr = librosa.load(path, sample_rate)
+TypeError: load() takes 1 positional argument but 2 were given
+Traceback (most recent call last):
+  File "/disk7T/ypguo/PyramidFL/training/learner.py", line 712, in <module>
+    model, train_dataset, test_dataset = init_dataset()
+  File "/disk7T/ypguo/PyramidFL/training/flLibs.py", line 241, in init_dataset
+    os.path.join(args.data_dir, bkg), data_aug_transform)
+  File "/disk7T/ypguo/PyramidFL/training/utils/speech.py", line 150, in __init__
+    s, sr = librosa.load(path, sample_rate)
+TypeError: load() takes 1 positional argument but 2 were given
+Traceback (most recent call last):
+  File "/disk7T/ypguo/PyramidFL/training/learner.py", line 712, in <module>
+    model, train_dataset, test_dataset = init_dataset()
+  File "/disk7T/ypguo/PyramidFL/training/flLibs.py", line 241, in init_dataset
+    os.path.join(args.data_dir, bkg), data_aug_transform)
+  File "/disk7T/ypguo/PyramidFL/training/utils/speech.py", line 150, in __init__
+    s, sr = librosa.load(path, sample_rate)
+TypeError: load() takes 1 positional argument but 2 were given
+Traceback (most recent call last):
+  File "/disk7T/ypguo/PyramidFL/training/learner.py", line 712, in <module>
+    model, train_dataset, test_dataset = init_dataset()
+  File "/disk7T/ypguo/PyramidFL/training/flLibs.py", line 241, in init_dataset
+    os.path.join(args.data_dir, bkg), data_aug_transform)
+  File "/disk7T/ypguo/PyramidFL/training/utils/speech.py", line 150, in __init__
+    s, sr = librosa.load(path, sample_rate)
+TypeError: load() takes 1 positional argument but 2 were given

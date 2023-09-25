@@ -11,7 +11,8 @@ import numba
 import librosa
 from torch.utils.data import Dataset
 
-CLASSES = ['up', 'two', 'sheila', 'zero', 'yes', 'five', 'one', 'happy', 'marvin', 'no', 'go', 'seven', 'eight', 'tree', 'stop', 'down', 'forward', 'learn', 'house', 'three', 'six', 'backward', 'dog', 'cat', 'wow', 'left', 'off', 'on', 'four', 'visual', 'nine', 'bird', 'right', 'follow', 'bed']
+CLASSES = ['up', 'two', 'sheila', 'zero', 'yes', 'five', 'one', 'happy', 'marvin', 'no', 'go', 'seven', 'eight', 'tree', 'stop', 'down', 'forward',
+           'learn', 'house', 'three', 'six', 'backward', 'dog', 'cat', 'wow', 'left', 'off', 'on', 'four', 'visual', 'nine', 'bird', 'right', 'follow', 'bed']
 
 
 class SPEECH():
@@ -54,8 +55,8 @@ class SPEECH():
         warnings.warn("test_data has been renamed data")
         return self.data
 
-    def __init__(self, root, train=True, transform=None, target_transform=None, num_classes=len(CLASSES),classes=CLASSES):
-        #TODO:filter data
+    def __init__(self, root, train=True, transform=None, target_transform=None, num_classes=len(CLASSES), classes=CLASSES):
+        # TODO:filter data
         self.train = train  # training set or test set
         self.root = root
         self.transform = transform
@@ -68,7 +69,7 @@ class SPEECH():
         else:
             self.data_file = self.test_file
 
-        #if not self._check_exists():
+        # if not self._check_exists():
         #    raise RuntimeError('Dataset not found.' +
         #                       ' You have to download it')
 
@@ -79,9 +80,8 @@ class SPEECH():
         self.path = os.path.join(self.processed_folder, self.data_file)
         # load data and targets
         self.data, self.targets = self.load_file(self.path)
-        #print(self.data[:10])
-        #print(self.targets[:10])
-
+        # print(self.data[:10])
+        # print(self.targets[:10])
 
     def __getitem__(self, index):
         """
@@ -92,17 +92,17 @@ class SPEECH():
             tuple: (image, target) where target is index of the target class.
         """
         path, target = self.data[index], int(self.targets[index])
-        data_dir = os.path.join(self.root, 'train') if self.train else os.path.join(self.root, 'test')
+        data_dir = os.path.join(
+            self.root, 'train') if self.train else os.path.join(self.root, 'test')
         data = {'path': os.path.join(data_dir, path), 'target': target}
-
 
         if self.transform is not None:
             data = self.transform(data)
 
-        #if self.target_transform is not None:
+        # if self.target_transform is not None:
         #    target = self.target_transform(target)
-        #logging.info('====== data input shape is =====')
-        #logging.info(data['input'].shape)
+        # logging.info('====== data input shape is =====')
+        # logging.info(data['input'].shape)
         return data['input'], data['target']
 
     def __len__(self):
@@ -147,7 +147,8 @@ class BackgroundNoiseDataset():
         samples = []
         for f in audio_files:
             path = os.path.join(folder, f)
-            s, sr = librosa.load(path, sample_rate)
+            # s, sr = librosa.load(path, sample_rate)
+            s, sr = librosa.load(path)
             samples.append(s)
 
         samples = np.hstack(samples)
@@ -163,10 +164,10 @@ class BackgroundNoiseDataset():
         return len(self.samples)
 
     def __getitem__(self, index):
-        data = {'samples': self.samples[index], 'sample_rate': self.sample_rate, 'target': 1, 'path': self.path}
+        data = {'samples': self.samples[index],
+                'sample_rate': self.sample_rate, 'target': 1, 'path': self.path}
 
         if self.transform is not None:
             data = self.transform(data)
 
         return data
-
