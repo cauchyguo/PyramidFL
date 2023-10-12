@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from fl_aggregator_libs import *
+from fl_aggregator_libs import Queue
 from random import Random
 import scipy.io
+import time
 
 initiate_aggregator_setting()
 
-
-# cuda初始化
 for i in range(torch.cuda.device_count()):
     try:
         device_id = args.gpu_device
@@ -17,6 +17,8 @@ for i in range(torch.cuda.device_count()):
         break
     except Exception as e:
         assert i != torch.cuda.device_count()-1, 'Can not find a feasible GPU'
+
+# device = torch.device('cpu')
 
 entire_train_data = None
 sample_size_dic = {}
@@ -31,9 +33,11 @@ os.environ['MASTER_PORT'] = args.ps_port
 
 def initiate_sampler_query(queue, numOfClients):
     global logDir
-    # Initiate the clientSampler 客户端取样器
+    # Initiate the clientSampler
     if args.sampler_path is None:
         # if not args.load_model and args.sampler_path is None:
+        # sample_mode 采样方式，random，oort
+        # score_mode:loss
         client_sampler = clientSampler(args.sample_mode, args.score_mode,
                                        args=args, filter=args.filter_less, sample_seed=args.sample_seed)
     else:
@@ -49,6 +53,7 @@ def initiate_sampler_query(queue, numOfClients):
     if os.path.exists(args.client_path):
         with open(args.client_path, 'rb') as fin:
             # {clientId: [computer, bandwidth]}
+            # 共计50万个客户端供选择
             global_client_profile = pickle.load(fin)
 
     collectedClients = 0
@@ -85,9 +90,8 @@ def initiate_sampler_query(queue, numOfClients):
                                                     batch_size=args.batch_size, upload_epoch=args.upload_epoch,
                                                     model_size=args.model_size*args.clock_factor)
                     if args.enable_obs_client:
-                        roundDuration, roundDurationLocal, roundDurationComm = client_sampler.getCompletionTime(clientId,
-                                                                                                                batch_size=args.batch_size, upload_epoch=args.upload_epoch,
-                                                                                                                model_size=args.model_size * args.clock_factor)
+                        roundDuration, roundDurationLocal, roundDurationComm = client_sampler.getCompletionTime(
+                            clientId, batch_size=args.batch_size, upload_epoch=args.upload_epoch, model_size=args.model_size * args.clock_factor)
                         roundDurationList.append(roundDuration)
                         roundDurationLocalList.append(roundDurationLocal)
                         roundDurationCommList.append(roundDurationComm)
@@ -172,6 +176,7 @@ def prune_client_tasks(clientSampler, sampledClientsRealTemp, numToRealRun, glob
         virtual_client_clock[virtualClient] = roundDuration
 
     # 3. get the top-k completions
+    # 获得completion时间最少的client的index（在选中的几个sampledClientsReal中）
     sortedWorkersByCompletion = sorted(
         range(len(completionTimes)), key=lambda k: completionTimes[k])
     top_k_index = sortedWorkersByCompletion[:numToRealRun]
@@ -286,6 +291,8 @@ def run(model, queue, param_q, stop_signal, clientSampler):
                             'model': args.model,
                             'sample_mode': args.sample_mode,
                             'gradient_policy': args.gradient_policy,
+                            'epoch': args.epochs,
+                            'client_nums': args.total_worker,
                             'task': args.task,
                             'perf': collections.OrderedDict()}
 
@@ -298,6 +305,10 @@ def run(model, queue, param_q, stop_signal, clientSampler):
                 handle_start = time.time()
                 tmp_dict = queue.get()
                 rank_src = list(tmp_dict.keys())[0]
+                if len(tmp_dict[rank_src]) < 8:
+                    logging.info("error occor!")
+                    logging.info(tmp_dict[rank_src])
+                    # print('stop')
 
                 [iteration_loss, trained_size, isWorkerEnd, clientIds, speed, testRes, virtualClock] = \
                     [tmp_dict[rank_src][i]
@@ -581,9 +592,15 @@ def run(model, queue, param_q, stop_signal, clientSampler):
                     # update the clientSampler and model
                     with open(clientInfoFile, 'wb') as fout:
                         pickle.dump(clientSampler, fout)
+                    logging.info("-----------------------")
+                    logging.info(model.parameters())
+                    logging.info("-----------------------")
                     for idx, param in enumerate(model.parameters()):
+                        # logging.info("-----------------------")
+
                         if not args.test_only:
-                            if (not args.load_model or epoch_count > 2):
+                            if (not args.load_model or epoch_count > 2):  # 修改bug
+                                # if (not args.load_model or epoch_count > 2):
                                 param.data += sumDeltaWeights[idx]
                             dist.broadcast(
                                 tensor=(param.data.to(device=device)), src=0)
@@ -622,9 +639,10 @@ def run(model, queue, param_q, stop_signal, clientSampler):
                     gc.collect()
 
                 # The training stop
-                if (epoch_count >= args.epochs):
+                if (epoch_count > args.epochs):
+                    time.sleep(5)
                     stop_signal.put(1)
-                    logging.info('Epoch is done: {}'.format(epoch_count))
+                    logging.info('Epoch is done: {}'.format(epoch_count - 1))
                     break
 
             except Exception as e:
@@ -633,6 +651,17 @@ def run(model, queue, param_q, stop_signal, clientSampler):
                 print("====Error: " + str(e) + '\n')
                 logging.info("====Error: {}, {}, {}, {}".format(
                     e, exc_type, fname, exc_tb.tb_lineno))
+                # debug
+                print(e.args)
+                logging.info("===============")
+                import traceback
+                logging.info("===============")
+                logging.info(args.load_model)
+                logging.info(epoch_count)
+                logging.info("===============")
+                logging.info(e.args)
+                logging.info(traceback.format_exc())
+                print(traceback.format_exc())
 
         e_time = time.time()
         if (e_time - s_time) >= float(args.timeout):
@@ -667,6 +696,18 @@ def initiate_channel():
 
 
 if __name__ == "__main__":
+
+    training_history = {'data_set': args.data_set,
+                        'model': args.model,
+                        'sample_mode': args.sample_mode,
+                        'gradient_policy': args.gradient_policy,
+                        'epoch': args.epochs,
+                        'client_nums': args.total_worker,
+                        'task': args.task,
+                        # 'perf': collections.OrderedDict()
+                        }
+    for key, value in training_history.items():
+        logging.info(key + ':' + str(value))
 
     # Control the global random
     setup_seed(args.this_rank)

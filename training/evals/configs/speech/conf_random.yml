@@ -15,7 +15,7 @@ worker_ips:
     - localhost:[0,1,1,1]
 
 exp_path: /disk7T/ypguo/PyramidFL/training
-python_path: /home/ypguo/.conda/envs/mytorch/bin/
+python_path: /home/ypguo/.conda/envs/fedscale/bin/
 
 auth:
     ssh_user: "ypguo"
@@ -33,7 +33,7 @@ setup_commands:
 job_conf:
     - job_name: google_speech # Generate logs under this folder: log_path/job_name/time_stamp
     - log_path: /disk7T/ypguo/PyramidFL/training/evals # Path of log files
-    - total_worker: 10 # Number of participants per round, we use K=100 in our paper, large K will be much slower
+    - total_worker: 50 # Number of participants per round, we use K=100 in our paper, large K will be much slower
     - data_set: google_speech # Dataset: openImg, google_speech, stackoverflow
     - data_dir: /disk7T/ypguo/FedScale/benchmark/dataset/data/speech_commands/google_speech # Path of the dataset
     - data_mapfile: /disk7T/ypguo/FedScale/benchmark/dataset/speech_commands/clientDataMap # Allocation of data to each client, turn to iid setting if not provided
@@ -45,7 +45,7 @@ job_conf:
     # - proxy_avg: True # Commenting out these two lines will turn to "FedAvg"
     - round_penalty: 2.0 # Penalty factor in our paper (\alpha), \alpha -> 0 turns to (Oort w/o sys)
     - eval_interval: 10 # How many rounds to run a testing on the testing set
-    - epochs: 1000 # Number of rounds to run this training. We use 1000 in our paper, while it may converge w/ ~400 rounds
+    - epochs: 501 # Number of rounds to run this training. We use 1000 in our paper, while it may converge w/ ~400 rounds
     - task: speech
     - pacer_delta: 30 # Set to include the next WxK clients
     - filter_less: 30 # Remove clients w/ less than 16 samples

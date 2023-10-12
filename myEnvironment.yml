@@ -112,7 +112,7 @@ dependencies:
       - tensorboardx
       - tokenizers
       - torch
-      - torch-baidu-ctc
+      # - torch-baidu-ctc
       - torchvision
       - tqdm
       - transformers

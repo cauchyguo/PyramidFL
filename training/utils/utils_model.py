@@ -13,6 +13,7 @@ from argParser import args
 from utils.nlp import mask_tokens
 from utils.decoder import GreedyDecoder
 
+
 class MySGD(optim.SGD):
 
     def __init__(self, params, lr=0.01, momentum=0.0,
@@ -39,7 +40,8 @@ class MySGD(optim.SGD):
                 if momentum != 0:
                     param_state = self.state[p]
                     if 'momentum_buffer' not in param_state:
-                        buf = param_state['momentum_buffer'] = torch.zeros_like(p.data)
+                        buf = param_state['momentum_buffer'] = torch.zeros_like(
+                            p.data)
                         buf.mul_(momentum).add_(d_p)
                     else:
                         buf = param_state['momentum_buffer']
@@ -72,7 +74,8 @@ class MySGD(optim.SGD):
                 if momentum != 0:
                     param_state = self.state[p]
                     if 'momentum_buffer' not in param_state:
-                        buf = param_state['momentum_buffer'] = torch.zeros_like(p.data)
+                        buf = param_state['momentum_buffer'] = torch.zeros_like(
+                            p.data)
                         buf.mul_(momentum).add_(d_p)
                     else:
                         buf = param_state['momentum_buffer']
@@ -88,7 +91,7 @@ class MySGD(optim.SGD):
                     delta_ws.append(nestedLr * d_p)
 
         return delta_ws
-        
+
     def get_delta_importance_sampling(self, nestedLr=0.01):
         delta_ws = []
         for group in self.param_groups:
@@ -97,13 +100,13 @@ class MySGD(optim.SGD):
             dampening = group['dampening']
             nesterov = group['nesterov']
 
-            gradient_l2_norm=0
-            
+            gradient_l2_norm = 0
+
             for p in group['params']:
                 if p.grad is None:
                     continue
                 d_p = p.grad.data
-                gradient_l2_norm+=(d_p.norm(2)**2).item()
+                gradient_l2_norm += (d_p.norm(2)**2).item()
                 # if weight_decay != 0:
                 #     d_p.add_(weight_decay, p.data)
                 # if momentum != 0:
@@ -123,7 +126,8 @@ class MySGD(optim.SGD):
                 else:
                     delta_ws.append(nestedLr * d_p)
 
-        return delta_ws,gradient_l2_norm
+        return delta_ws, gradient_l2_norm
+
 
 def cal_accuracy(targets, outputs):
     temp_acc = 0
@@ -148,9 +152,10 @@ def cal_accuracy(targets, outputs):
 
     return temp_acc, temp_all_or_false, temp_len
 
+
 def test_model(rank, model, test_data, criterion=nn.NLLLoss(), tokenizer=None):
     # device_id=args.gpu_device%(torch.cuda.device_count()-1)+1
-    device_id=args.gpu_device
+    device_id = args.gpu_device
     test_loss = 0
     correct = 0
     top_5 = 0
@@ -168,34 +173,41 @@ def test_model(rank, model, test_data, criterion=nn.NLLLoss(), tokenizer=None):
     decoder = None
 
     if args.task == 'voice':
-        decoder = GreedyDecoder(model.labels, blank_index=model.labels.index('_'))
+        decoder = GreedyDecoder(
+            model.labels, blank_index=model.labels.index('_'))
 
     for data, target in test_data:
         if args.task == 'nlp':
 
-            data, target = mask_tokens(data, tokenizer, args) if args.mlm else (data, data)
-            data, target = Variable(data).cuda(device=device_id), Variable(target).cuda(device=device_id)
+            data, target = mask_tokens(
+                data, tokenizer, args) if args.mlm else (data, data)
+            data, target = Variable(data).cuda(
+                device=device_id), Variable(target).cuda(device=device_id)
 
-            outputs = model(data, masked_lm_labels=target) if args.mlm else model(data, labels=target)
+            outputs = model(data, masked_lm_labels=target) if args.mlm else model(
+                data, labels=target)
 
             loss = outputs[0]
-            #criterion(outputs[1].view(-1, 30000), target.view(-1))
+            # criterion(outputs[1].view(-1, 30000), target.view(-1))
             test_loss += loss.data.mean().item()
             perplexity_loss += loss.data.mean().item()
 
-            acc = accuracy(outputs[1].view(-1, 30000), target.view(-1), topk=(1, 5))
+            acc = accuracy(outputs[1].view(-1, 30000),
+                           target.view(-1), topk=(1, 5))
 
             correct += acc[0].item()
             top_5 += acc[1].item()
 
         elif args.task == 'tag':
-            data, target = Variable(data).cuda(device=device_id), Variable(target).cuda(device=device_id)
+            data, target = Variable(data).cuda(
+                device=device_id), Variable(target).cuda(device=device_id)
             output = model(data)
             loss = criterion(output, target)
 
             # we have to scan the sample one by one
             for idx, sample in enumerate(output):
-                target_index = torch.nonzero(target[idx]).flatten().cpu().numpy().tolist()
+                target_index = torch.nonzero(
+                    target[idx]).flatten().cpu().numpy().tolist()
                 maxk = len(target_index)
                 preds += [sample.topk(maxk)[1].cpu().numpy().tolist()]
                 targets_list += [target_index]
@@ -203,7 +215,8 @@ def test_model(rank, model, test_data, criterion=nn.NLLLoss(), tokenizer=None):
             test_loss += loss.data.mean().item()
 
         elif args.task == 'speech':
-            data, target = Variable(data).cuda(device=device_id), Variable(target).cuda(device=device_id)
+            data, target = Variable(data).cuda(
+                device=device_id), Variable(target).cuda(device=device_id)
             data = torch.unsqueeze(data, 1)
 
             output = model(data)
@@ -217,10 +230,12 @@ def test_model(rank, model, test_data, criterion=nn.NLLLoss(), tokenizer=None):
 
         elif args.task == 'text_clf':
             (inputs, masks) = data
-            inputs, masks, target = Variable(inputs).cuda(device=device_id), Variable(masks).cuda(device=device_id), Variable(target).cuda(device=device_id)
-            loss, output = model(inputs, token_type_ids=None, attention_mask=masks, labels=target)
+            inputs, masks, target = Variable(inputs).cuda(device=device_id), Variable(
+                masks).cuda(device=device_id), Variable(target).cuda(device=device_id)
+            loss, output = model(inputs, token_type_ids=None,
+                                 attention_mask=masks, labels=target)
 
-            #loss = torch.mean(loss)
+            # loss = torch.mean(loss)
             test_loss += loss.mean().item()  # Variable.data
             acc = accuracy(output, target, topk=(1, 2))
 
@@ -259,7 +274,8 @@ def test_model(rank, model, test_data, criterion=nn.NLLLoss(), tokenizer=None):
             loss = criterion(outputs, target, output_sizes, target_sizes)
             test_loss += loss.data.mean().item()
         else:
-            data, target = Variable(data).cuda(device=device_id), Variable(target).cuda(device=device_id)
+            data, target = Variable(data).cuda(
+                device=device_id), Variable(target).cuda(device=device_id)
 
             output = model(data)
             loss = criterion(output, target)
@@ -273,7 +289,8 @@ def test_model(rank, model, test_data, criterion=nn.NLLLoss(), tokenizer=None):
         test_len += len(target)
 
     if args.task == 'voice':
-        correct,  top_5, test_len = float(total_wer), float(total_cer), float(num_tokens)
+        correct,  top_5, test_len = float(
+            total_wer), float(total_cer), float(num_tokens)
 
     # loss function averages over batch size
     test_loss /= len(test_data)
@@ -291,31 +308,34 @@ def test_model(rank, model, test_data, criterion=nn.NLLLoss(), tokenizer=None):
         top_5, correct, test_len = cal_accuracy(targets_list, preds)
 
     logging.info('Rank {}: Test set: Average loss: {}, Top-1 Accuracy: {}/{} ({}), Top-5 Accuracy: {}'
-          .format(rank, test_loss, correct, len(test_data.dataset), acc, acc_5))
+                 .format(rank, test_loss, correct, len(test_data.dataset), acc, acc_5))
 
     return test_loss, acc, acc_5, [correct, top_5, sum_loss, test_len]
+
 
 def accuracy(output, target, topk=(1,)):
     """Computes the accuracy over the k top predictions for the specified values of k"""
     with torch.no_grad():
         maxk = max(topk)
-        #batch_size = target.size(0)
+        # batch_size = target.size(0)
 
-        #logging.info("====To get accuracy, top-k is {}, while shape is {}".format(maxk, output.shape))
+        # logging.info("====To get accuracy, top-k is {}, while shape is {}".format(maxk, output.shape))
         _, pred = output.topk(maxk, 1, True, True)
         pred = pred.t()
         correct = pred.eq(target.view(1, -1).expand_as(pred))
 
         # print the target
-        #logging.info(f"====Target:{target.cpu().numpy().flatten()}")
+        # logging.info(f"====Target:{target.cpu().numpy().flatten()}")
         res = []
         for k in topk:
-            correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
+            correct_k = correct[:k].contiguous(
+            ).view(-1).float().sum(0, keepdim=True)
             res.append(correct_k)
 
-            #logging.info(f"====top: {k}, sum: {correct_k.item()}, predictions: {correct[:k].cpu().numpy().sum(0).flatten()}")
+            # logging.info(f"====top: {k}, sum: {correct_k.item()}, predictions: {correct[:k].cpu().numpy().sum(0).flatten()}")
 
         return res
+
 
 class RandomParams(object):
 
@@ -332,4 +352,3 @@ class RandomParams(object):
         part_len = int(math.floor(self.ratio * len(params_indices)))
         result = indexes[0: part_len]
         return [params_indices[i] for i in result]
-

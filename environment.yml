@@ -1,4 +1,4 @@
-name: oort
+name: py36
 channels:
   - gurobi
   - pytorch

@@ -12,6 +12,10 @@ __py*/
 eval_data/
 .vscode/
 training/evals/logs/
+training/evals/*_logging_*
+training/evals/google_speech_*
+training/evals/openimage_*
+training/evals/logging/*
 *.swp
 .DS_Store
 *swo
