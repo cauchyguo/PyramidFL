@@ -1,0 +1,61 @@
+Downloading:   0%|          | 0.00/760k [00:00<?, ?B/s]Downloading:   0%|          | 1.02k/760k [00:00<02:57, 4.27kB/s]Downloading:   4%|▍         | 33.8k/760k [00:00<00:08, 81.4kB/s]Downloading:  14%|█▎        | 103k/760k [00:00<00:03, 175kB/s]  Downloading:  29%|██▉       | 224k/760k [00:00<00:01, 303kB/s]Downloading:  50%|█████     | 382k/760k [00:01<00:00, 415kB/s]Downloading:  56%|█████▌    | 423k/760k [00:01<00:01, 333kB/s]Downloading:  64%|██████▍   | 486k/760k [00:01<00:00, 317kB/s]Downloading:  71%|███████   | 539k/760k [00:01<00:00, 285kB/s]Downloading:  82%|████████▏ | 626k/760k [00:02<00:00, 308kB/s]Downloading:  91%|█████████▏| 695k/760k [00:02<00:00, 302kB/s]Downloading: 100%|██████████| 760k/760k [00:02<00:00, 303kB/s]2023-09-20:20:03:20,64 INFO     [learner.py:13] End up with cuda device tensor([0.7025], device='cuda:1')
+2023-09-20:20:03:20,65 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+Traceback (most recent call last):
+  File "/disk7T/ypguo/PyramidFL/training/learner.py", line 703, in <module>
+    manager.connect()
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/managers.py", line 489, in connect
+    conn = Client(self._address, authkey=self._authkey)
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/connection.py", line 487, in Client
+    c = SocketClient(address)
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/connection.py", line 614, in SocketClient
+    s.connect(address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+2023-09-20:20:03:20,167 INFO     [param_server.py:13] End up with cuda device tensor([0.9936], device='cuda:0')
+2023-09-20:20:03:20,613 INFO     [param_server.py:616] ====Start to initialize dataset
+2023-09-20:20:03:20,614 INFO     [flLibs.py:59] ====Initialize the model
+2023-09-20:20:03:21,308 INFO     [learner.py:13] End up with cuda device tensor([0.2107], device='cuda:3')
+2023-09-20:20:03:21,309 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+Traceback (most recent call last):
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/site-packages/transformers/configuration_utils.py", line 227, in get_config_dict
+    raise EnvironmentError
+OSError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/disk7T/ypguo/PyramidFL/training/param_server.py", line 618, in <module>
+    model, train_dataset, test_dataset = init_dataset()
+  File "/disk7T/ypguo/PyramidFL/training/flLibs.py", line 63, in init_dataset
+    config = AutoConfig.from_pretrained(os.path.join(args.data_dir, 'albert-base-v2-config.json'))
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/site-packages/transformers/configuration_auto.py", line 183, in from_pretrained
+    pretrained_model_name_or_path, pretrained_config_archive_map=ALL_PRETRAINED_CONFIG_ARCHIVE_MAP, **kwargs
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/site-packages/transformers/configuration_utils.py", line 243, in get_config_dict
+    raise EnvironmentError(msg)
+OSError: Model name '/disk7T/ypguo/FedScale/benchmark/dataset/data/stackoverflow/albert-base-v2-config.json' was not found in model name list. We assumed 'https://s3.amazonaws.com/models.huggingface.co/bert//disk7T/ypguo/FedScale/benchmark/dataset/data/stackoverflow/albert-base-v2-config.json/config.json' was a path, a model identifier, or url to a configuration file named config.json or a directory containing such a file but couldn't find any such file at this path or url.
+Traceback (most recent call last):
+  File "/disk7T/ypguo/PyramidFL/training/learner.py", line 707, in <module>
+    stop_signal = manager.get_stop_signal()  # stop
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/managers.py", line 668, in temp
+    dispatch(conn, None, 'decref', (token.id,))
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/managers.py", line 79, in dispatch
+    kind, result = c.recv()
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/connection.py", line 250, in recv
+    buf = self._recv_bytes()
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/connection.py", line 407, in _recv_bytes
+    buf = self._recv(4)
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/connection.py", line 379, in _recv
+    chunk = read(handle, remaining)
+ConnectionResetError: [Errno 104] Connection reset by peer
+2023-09-20:20:03:22,761 INFO     [learner.py:13] End up with cuda device tensor([0.0876], device='cuda:2')
+2023-09-20:20:03:22,763 INFO     [learner.py:41] ===== Experiment start on : user-Server=====
+Traceback (most recent call last):
+  File "/disk7T/ypguo/PyramidFL/training/learner.py", line 703, in <module>
+    manager.connect()
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/managers.py", line 489, in connect
+    conn = Client(self._address, authkey=self._authkey)
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/connection.py", line 487, in Client
+    c = SocketClient(address)
+  File "/home/ypguo/.conda/envs/oort/lib/python3.6/multiprocessing/connection.py", line 614, in SocketClient
+    s.connect(address)
+ConnectionRefusedError: [Errno 111] Connection refused

@@ -1,4 +1,4 @@
-name: oort
+name: py36
 channels:
   - gurobi
   - pytorch
@@ -119,4 +119,4 @@ dependencies:
     - typing-extensions==3.10.0.0
     - urllib3==1.26.5
     - zipp==3.4.1
-prefix: /mnt/home/lichenni/anaconda3/envs/oort
+# prefix: /mnt/home/lichenni/anaconda3/envs/oort

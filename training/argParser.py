@@ -2,7 +2,8 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--job_name', type=str, default='kuiper_job')
-parser.add_argument('--log_path', type=str, default='../', help="default path is ../log")
+parser.add_argument('--log_path', type=str, default='../',
+                    help="default path is ../log")
 
 # The basic configuration of the cluster
 parser.add_argument('--ps_ip', type=str, default='127.0.0.1')
@@ -25,7 +26,8 @@ parser.add_argument('--exploration_decay', type=float, default=0.95)
 parser.add_argument('--fixed_clients', type=bool, default=False)
 parser.add_argument('--user_trace', type=str, default=None)
 parser.add_argument('--release_cache', type=bool, default=False)
-parser.add_argument('--clock_factor', type=float, default=2.5, help="Refactor the clock time given the profile")
+parser.add_argument('--clock_factor', type=float, default=2.5,
+                    help="Refactor the clock time given the profile")
 
 # The configuration of model and dataset
 parser.add_argument('--data_dir', type=str, default='~/cifar10/')
@@ -34,7 +36,8 @@ parser.add_argument('--client_path', type=str, default='/tmp/client.cfg')
 parser.add_argument('--model', type=str, default='shufflenet_v2_x2_0')
 parser.add_argument('--read_models_path', type=bool, default=False)
 parser.add_argument('--data_set', type=str, default='cifar10')
-parser.add_argument('--sample_mode', type=str, default='random')
+parser.add_argument('--sample_mode', type=str,
+                    default='random')  # 采样方式，random，oort
 parser.add_argument('--score_mode', type=str, default='loss')
 parser.add_argument('--proxy_avg', type=bool, default=False)
 parser.add_argument('--proxy_mu', type=float, default=0.1)
@@ -64,7 +67,8 @@ parser.add_argument('--epochs', type=int, default=1000)
 parser.add_argument('--batch_size', type=int, default=30)
 parser.add_argument('--test_bsz', type=int, default=128)
 parser.add_argument('--heterogeneity', type=float, default=1.0)
-parser.add_argument('--hetero_allocation', type=str, default='1.0-1.0-1.0-1.0-1.0-1.0')
+parser.add_argument('--hetero_allocation', type=str,
+                    default='1.0-1.0-1.0-1.0-1.0-1.0')
 parser.add_argument('--backend', type=str, default="nccl")
 parser.add_argument('--display_step', type=int, default=20)
 parser.add_argument('--upload_epoch', type=int, default=10)
@@ -94,7 +98,7 @@ parser.add_argument('--zipf_alpha', type=str, default='5')
 parser.add_argument('--timeout', type=float, default=9999999)
 parser.add_argument('--full_gradient_interval', type=int, default=20)
 parser.add_argument('--is_even_avg', type=bool, default=True)
-parser.add_argument('--sample_seed', type=int, default=233) #123 #233
+parser.add_argument('--sample_seed', type=int, default=233)  # 123 #233
 parser.add_argument('--test_train_data', type=bool, default=False)
 parser.add_argument('--enforce_random', type=bool, default=False)
 parser.add_argument('--test_ratio', type=float, default=1.0)
@@ -183,13 +187,16 @@ parser.add_argument(
     "The training dataset will be truncated in block of this size for training."
     "Default to the model max input length for single sentence inputs (take into account special tokens).",
 )
-parser.add_argument("--do_train", action="store_true", help="Whether to run training.")
-parser.add_argument("--do_eval", action="store_true", help="Whether to run eval on the dev set.")
+parser.add_argument("--do_train", action="store_true",
+                    help="Whether to run training.")
+parser.add_argument("--do_eval", action="store_true",
+                    help="Whether to run eval on the dev set.")
 parser.add_argument(
     "--evaluate_during_training", action="store_true", help="Run evaluation during training at each logging step."
 )
 
-parser.add_argument("--per_gpu_train_batch_size", default=4, type=int, help="Batch size per GPU/CPU for training.")
+parser.add_argument("--per_gpu_train_batch_size", default=4,
+                    type=int, help="Batch size per GPU/CPU for training.")
 parser.add_argument(
     "--per_gpu_eval_batch_size", default=4, type=int, help="Batch size per GPU/CPU for evaluation."
 )
@@ -200,9 +207,12 @@ parser.add_argument(
     help="Number of updates steps to accumulate before performing a backward/update pass.",
 )
 # parser.add_argument("--learning_rate", default=5e-5, type=float, help="The initial learning rate for Adam.")
-parser.add_argument("--weight_decay", default=0.0, type=float, help="Weight decay if we apply some.")
-parser.add_argument("--adam_epsilon", default=1e-8, type=float, help="Epsilon for Adam optimizer.")
-parser.add_argument("--max_grad_norm", default=1.0, type=float, help="Max gradient norm.")
+parser.add_argument("--weight_decay", default=0.0, type=float,
+                    help="Weight decay if we apply some.")
+parser.add_argument("--adam_epsilon", default=1e-8,
+                    type=float, help="Epsilon for Adam optimizer.")
+parser.add_argument("--max_grad_norm", default=1.0,
+                    type=float, help="Max gradient norm.")
 parser.add_argument(
     "--num_train_epochs", default=1.0, type=float, help="Total number of training epochs to perform."
 )
@@ -212,10 +222,13 @@ parser.add_argument(
     type=int,
     help="If > 0: set total number of training steps to perform. Override num_train_epochs.",
 )
-parser.add_argument("--warmup_steps", default=0, type=int, help="Linear warmup over warmup_steps.")
+parser.add_argument("--warmup_steps", default=0, type=int,
+                    help="Linear warmup over warmup_steps.")
 
-parser.add_argument("--logging_steps", type=int, default=500, help="Log every X updates steps.")
-parser.add_argument("--save_steps", type=int, default=500, help="Save checkpoint every X updates steps.")
+parser.add_argument("--logging_steps", type=int, default=500,
+                    help="Log every X updates steps.")
+parser.add_argument("--save_steps", type=int, default=500,
+                    help="Save checkpoint every X updates steps.")
 parser.add_argument(
     "--save_total_limit",
     type=int,
@@ -227,14 +240,16 @@ parser.add_argument(
     action="store_true",
     help="Evaluate all checkpoints starting with the same prefix as model_name_or_path ending and ending with step number",
 )
-parser.add_argument("--no_cuda", action="store_true", help="Avoid using CUDA when available")
+parser.add_argument("--no_cuda", action="store_true",
+                    help="Avoid using CUDA when available")
 parser.add_argument(
     "--overwrite_output_dir", action="store_true", help="Overwrite the content of the output directory"
 )
 parser.add_argument(
     "--overwrite_cache", type=bool, default=False, help="Overwrite the cached training and evaluation sets"
 )
-parser.add_argument("--seed", type=int, default=42, help="random seed for initialization")
+parser.add_argument("--seed", type=int, default=42,
+                    help="random seed for initialization")
 
 parser.add_argument(
     "--fp16",
@@ -248,13 +263,18 @@ parser.add_argument(
     help="For fp16: Apex AMP optimization level selected in ['O0', 'O1', 'O2', and 'O3']."
     "See details at https://nvidia.github.io/apex/amp.html",
 )
-parser.add_argument("--local_rank", type=int, default=-1, help="For distributed training: local_rank")
-parser.add_argument("--server_ip", type=str, default="", help="For distant debugging.")
-parser.add_argument("--server_port", type=str, default="", help="For distant debugging.")
+parser.add_argument("--local_rank", type=int, default=-1,
+                    help="For distributed training: local_rank")
+parser.add_argument("--server_ip", type=str, default="",
+                    help="For distant debugging.")
+parser.add_argument("--server_port", type=str, default="",
+                    help="For distant debugging.")
 
 # for tag prediction
-parser.add_argument("--vocab_token_size", type=int, default=10000, help="For vocab token size")
-parser.add_argument("--vocab_tag_size", type=int, default=500, help="For vocab tag size")
+parser.add_argument("--vocab_token_size", type=int,
+                    default=10000, help="For vocab token size")
+parser.add_argument("--vocab_tag_size", type=int,
+                    default=500, help="For vocab tag size")
 
 # for speech
 # parser.add_argument("--num_classes", type=int, default=35, help="For number of classes in speech")
@@ -265,14 +285,22 @@ parser.add_argument('--train-manifest', metavar='DIR',
                     help='path to train manifest csv', default='data/train_manifest.csv')
 parser.add_argument('--test-manifest', metavar='DIR',
                     help='path to test manifest csv', default='data/test_manifest.csv')
-parser.add_argument('--sample-rate', default=16000, type=int, help='Sample rate')
-parser.add_argument('--labels-path', default='labels.json', help='Contains all characters for transcription')
-parser.add_argument('--window-size', default=.02, type=float, help='Window size for spectrogram in seconds')
-parser.add_argument('--window-stride', default=.01, type=float, help='Window stride for spectrogram in seconds')
-parser.add_argument('--window', default='hamming', help='Window type for spectrogram generation')
-parser.add_argument('--hidden-size', default=256, type=int, help='Hidden size of RNNs')
-parser.add_argument('--hidden-layers', default=7, type=int, help='Number of RNN layers')
-parser.add_argument('--rnn-type', default='lstm', help='Type of the RNN. rnn|gru|lstm are supported')
+parser.add_argument('--sample-rate', default=16000,
+                    type=int, help='Sample rate')
+parser.add_argument('--labels-path', default='labels.json',
+                    help='Contains all characters for transcription')
+parser.add_argument('--window-size', default=.02, type=float,
+                    help='Window size for spectrogram in seconds')
+parser.add_argument('--window-stride', default=.01, type=float,
+                    help='Window stride for spectrogram in seconds')
+parser.add_argument('--window', default='hamming',
+                    help='Window type for spectrogram generation')
+parser.add_argument('--hidden-size', default=256,
+                    type=int, help='Hidden size of RNNs')
+parser.add_argument('--hidden-layers', default=7,
+                    type=int, help='Number of RNN layers')
+parser.add_argument('--rnn-type', default='lstm',
+                    help='Type of the RNN. rnn|gru|lstm are supported')
 parser.add_argument('--finetune', dest='finetune', action='store_true',
                     help='Finetune the model from checkpoint "continue_from"')
 parser.add_argument('--speed-volume-perturb', dest='speed_volume_perturb', action='store_true',
@@ -281,7 +309,8 @@ parser.add_argument('--spec-augment', dest='spec_augment', action='store_true',
                     help='Use simple spectral augmentation on mel spectograms.')
 parser.add_argument('--noise-dir', default=None,
                     help='Directory to inject noise into audio. If default, noise Inject not added')
-parser.add_argument('--noise-prob', default=0.4, help='Probability of noise being added per sample')
+parser.add_argument('--noise-prob', default=0.4,
+                    help='Probability of noise being added per sample')
 parser.add_argument('--noise-min', default=0.0,
                     help='Minimum noise level to sample from. (1.0 means all noise, not original signal)', type=float)
 parser.add_argument('--noise-max', default=0.5,
@@ -290,32 +319,43 @@ parser.add_argument('--no-bidirectional', dest='bidirectional', action='store_fa
                     help='Turn off bi-directional RNNs, introduces lookahead convolution')
 
 # customized
-parser.add_argument('--home_path', type=str, default='', help="home path to the source codes")
-parser.add_argument('--enable_dropout', type=bool, default=False, help="enable local updates dropout for local training")
-parser.add_argument('--enable_adapt_local_epoch', type=bool, default=False, help="enable local epoch adaption for local training")
-parser.add_argument('--enable_importance', type=bool, default=False, help="enable data importance for local training")
-parser.add_argument('--load_time_stamp', default='0615_194942', help='load time stamp for subsequent training')
-parser.add_argument('--load_epoch', default=1, help='load time stamp for subsequent training',type=int)
-parser.add_argument('--enable_obs_importance', type=bool, default=False, help="enable debug mode")
-parser.add_argument('--enable_obs_client', type=bool, default=False, help="enable debug mode")
-parser.add_argument('--enable_obs_local_epoch', type=bool, default=False, help="enable debug mode")
-parser.add_argument('--dropout_low', default=0.1, help='dropout ratio for model parameterization',type=float)
-parser.add_argument('--dropout_high', default=0.6, help='dropout ratio for model parameterization',type=float)
-parser.add_argument('--adaptive_epoch_beta', default=1, help='dropout ratio for model parameterization',type=float)
-
+parser.add_argument('--home_path', type=str, default='',
+                    help="home path to the source codes")
+parser.add_argument('--enable_dropout', type=bool, default=False,
+                    help="enable local updates dropout for local training")
+parser.add_argument('--enable_adapt_local_epoch', type=bool, default=False,
+                    help="enable local epoch adaption for local training")
+parser.add_argument('--enable_importance', type=bool, default=False,
+                    help="enable data importance for local training")
+parser.add_argument('--load_time_stamp', default='0615_194942',
+                    help='load time stamp for subsequent training')
+parser.add_argument('--load_epoch', default=1,
+                    help='load time stamp for subsequent training', type=int)
+parser.add_argument('--enable_obs_importance', type=bool,
+                    default=False, help="enable debug mode")
+parser.add_argument('--enable_obs_client', type=bool,
+                    default=False, help="enable debug mode")
+parser.add_argument('--enable_obs_local_epoch', type=bool,
+                    default=False, help="enable debug mode")
+parser.add_argument('--dropout_low', default=0.1,
+                    help='dropout ratio for model parameterization', type=float)
+parser.add_argument('--dropout_high', default=0.6,
+                    help='dropout ratio for model parameterization', type=float)
+parser.add_argument('--adaptive_epoch_beta', default=1,
+                    help='dropout ratio for model parameterization', type=float)
 
 
 args = parser.parse_args()
 
 
-
-datasetCategories = {'Mnist': 10, 'cifar10': 10, "imagenet": 1000, 'emnist': 47,'openImg': 60, 'google_speech': 20, 'femnist': 62,'yelp': 5,'har': 5}
+datasetCategories = {'Mnist': 10, 'cifar10': 10, "imagenet": 1000, 'emnist': 47,
+                     'openImg': 60, 'google_speech': 20, 'femnist': 62, 'yelp': 5, 'har': 5}
 
 # Profiled relative speech w.r.t. Mobilenet
 model_factor = {'shufflenet': 0.0644/0.0554,
-    'albert': 0.335/0.0554,
-    'resnet': 0.135/0.0554,
-}
+                'albert': 0.335/0.0554,
+                'resnet': 0.135/0.0554,
+                }
 
 args.num_class = datasetCategories[args.data_set] if args.data_set in datasetCategories else 10
 for model_name in model_factor:

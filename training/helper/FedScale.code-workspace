@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../FedScale"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

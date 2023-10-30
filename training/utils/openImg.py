@@ -66,6 +66,7 @@ class OPENIMG():
                                ' You have to download it')
 
         # load class information
+        
         with open(os.path.join(self.processed_folder, 'classTags'), 'r') as fin:
             self.classes = [tag.strip() for tag in fin.readlines()]
 

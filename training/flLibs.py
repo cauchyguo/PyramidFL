@@ -1,11 +1,24 @@
 # Standard libs
-import os, re, shutil, sys, time, datetime, logging, pickle, json, socket
-import random, math, gc, copy
+import os
+import re
+import shutil
+import sys
+import time
+import datetime
+import logging
+import pickle
+import json
+import socket
+import random
+import math
+import gc
+import copy
 from collections import OrderedDict
 from ctypes import c_bool
 from multiprocessing import Process, Value
 from multiprocessing.managers import BaseManager
-import multiprocessing, threading
+import multiprocessing
+import threading
 import numpy as np
 from collections import deque
 from collections import OrderedDict
@@ -22,12 +35,13 @@ from torch.autograd import Variable
 from torchvision import datasets, transforms
 import torchvision.models as tormodels
 from torch.utils.data.sampler import WeightedRandomSampler
-from torch_baidu_ctc import CTCLoss
+# from torch_baidu_ctc import CTCLoss
+from torch.nn import CTCLoss
 
 # libs from FLBench
 from argParser import args
 from utils.divide_data import partition_dataset, select_dataset, DataPartitioner
-#from utils.models import *
+# from utils.models import *
 from utils.utils_data import get_data_transform
 from utils.utils_model import MySGD, test_model
 
@@ -47,7 +61,9 @@ from utils.yogi import YoGi
 tokenizer = None
 
 if args.task == 'nlp' or args.task == 'text_clf':
-    tokenizer = AlbertTokenizer.from_pretrained('albert-base-v2', do_lower_case=True)
+    tokenizer = AlbertTokenizer.from_pretrained(
+        'albert-base-v2', do_lower_case=True)
+
 
 def init_dataset():
     global tokenizer
@@ -60,10 +76,12 @@ def init_dataset():
 
     if args.task == 'nlp':
         # we should train from scratch
-        config = AutoConfig.from_pretrained(os.path.join(args.data_dir, 'albert-base-v2-config.json'))
+        config = AutoConfig.from_pretrained(os.path.join(
+            args.data_dir, 'albert-base-v2-config.json'))
         model = AutoModelWithLMHead.from_config(config)
     elif args.task == 'text_clf':
-        config = AutoConfig.from_pretrained(os.path.join(args.data_dir, 'albert-base-v2-config.json'))
+        config = AutoConfig.from_pretrained(os.path.join(
+            args.data_dir, 'albert-base-v2-config.json'))
         config.num_labels = args.num_class
         # config.output_attentions = False
         # config.output_hidden_states = False
@@ -120,10 +138,9 @@ def init_dataset():
                            bidirectional=args.bidirectional)
     elif args.task == 'har':
         from utils.cnn_har import classificationModel
-        model=classificationModel()   
+        model = classificationModel()
     else:
         model = tormodels.__dict__[args.model](num_classes=args.num_class)
-    
 
     train_dataset, test_dataset = [], []
 
@@ -131,13 +148,15 @@ def init_dataset():
     if args.this_rank == 0:
         if args.load_model:
             try:
-                modelPath = os.path.join(args.model_path,'worker/model_1.pth.tar')
+                modelPath = os.path.join(
+                    args.model_path, 'worker/model_1.pth.tar')
                 with open(modelPath, 'rb') as fin:
                     model = pickle.load(fin)
 
                 logging.info("====Load model successfully\n")
             except Exception as e:
-                logging.info("====Error: Failed to load model due to {}\n".format(str(e)))
+                logging.info(
+                    "====Error: Failed to load model due to {}\n".format(str(e)))
                 sys.exit(-1)
     else:
         if args.data_set == 'Mnist':
@@ -157,36 +176,49 @@ def init_dataset():
 
         elif args.data_set == "imagenet":
             train_transform, test_transform = get_data_transform('imagenet')
-            train_dataset = datasets.ImageNet(args.data_dir, split='train', download=False, transform=train_transform)
-            test_dataset = datasets.ImageNet(args.data_dir, split='val', download=False, transform=test_transform)
+            train_dataset = datasets.ImageNet(
+                args.data_dir, split='train', download=False, transform=train_transform)
+            test_dataset = datasets.ImageNet(
+                args.data_dir, split='val', download=False, transform=test_transform)
 
         elif args.data_set == 'emnist':
-            test_dataset = datasets.EMNIST(args.data_dir, split='balanced', train=False, download=True, transform=transforms.ToTensor())
-            train_dataset = datasets.EMNIST(args.data_dir, split='balanced', train=True, download=True, transform=transforms.ToTensor())
+            test_dataset = datasets.EMNIST(
+                args.data_dir, split='balanced', train=False, download=True, transform=transforms.ToTensor())
+            train_dataset = datasets.EMNIST(
+                args.data_dir, split='balanced', train=True, download=True, transform=transforms.ToTensor())
 
         elif args.data_set == 'femnist':
             from utils.femnist import FEMNIST
 
             train_transform, test_transform = get_data_transform('mnist')
-            train_dataset = FEMNIST(args.data_dir, train=True, transform=train_transform)
-            test_dataset = FEMNIST(args.data_dir, train=False, transform=test_transform)
+            train_dataset = FEMNIST(
+                args.data_dir, train=True, transform=train_transform)
+            test_dataset = FEMNIST(
+                args.data_dir, train=False, transform=test_transform)
 
         elif args.data_set == 'openImg':
             from utils.openImg import OPENIMG
 
             transformer_ns = 'openImg' if args.model != 'inception_v3' else 'openImgInception'
-            train_transform, test_transform = get_data_transform(transformer_ns)
-            train_dataset = OPENIMG(args.data_dir, train=True, transform=train_transform,num_classes=args.num_class)
-            test_dataset = OPENIMG(args.data_dir, train=False, transform=test_transform,num_classes=args.num_class)
+            train_transform, test_transform = get_data_transform(
+                transformer_ns)
+            train_dataset = OPENIMG(
+                args.data_dir, train=True, transform=train_transform, num_classes=args.num_class)
+            test_dataset = OPENIMG(
+                args.data_dir, train=False, transform=test_transform, num_classes=args.num_class)
         elif args.data_set == 'har':
             from utils.har import HAR
 
-            train_dataset = HAR(args.data_dir, train=True, transform=None,num_classes=args.num_class)
-            test_dataset = HAR(args.data_dir, train=False, transform=None,num_classes=args.num_class)
+            train_dataset = HAR(args.data_dir, train=True,
+                                transform=None, num_classes=args.num_class)
+            test_dataset = HAR(args.data_dir, train=False,
+                               transform=None, num_classes=args.num_class)
 
         elif args.data_set == 'blog':
-            train_dataset = load_and_cache_examples(args, tokenizer, evaluate=False)
-            test_dataset = load_and_cache_examples(args, tokenizer, evaluate=True)
+            train_dataset = load_and_cache_examples(
+                args, tokenizer, evaluate=False)
+            test_dataset = load_and_cache_examples(
+                args, tokenizer, evaluate=True)
 
         elif args.data_set == 'stackoverflow':
             from utils.stackoverflow import stackoverflow
@@ -197,42 +229,49 @@ def init_dataset():
         elif args.data_set == 'yelp':
             import utils.dataloaders as fl_loader
 
-            train_dataset = fl_loader.TextSentimentDataset(args.data_dir, train=True, tokenizer=tokenizer, max_len=args.clf_block_size)
-            test_dataset = fl_loader.TextSentimentDataset(args.data_dir, train=False, tokenizer=tokenizer, max_len=args.clf_block_size)
+            train_dataset = fl_loader.TextSentimentDataset(
+                args.data_dir, train=True, tokenizer=tokenizer, max_len=args.clf_block_size)
+            test_dataset = fl_loader.TextSentimentDataset(
+                args.data_dir, train=False, tokenizer=tokenizer, max_len=args.clf_block_size)
 
         elif args.data_set == 'google_speech':
             bkg = '_background_noise_'
-            data_aug_transform = transforms.Compose([ChangeAmplitude(), ChangeSpeedAndPitchAudio(), FixAudioLength(), ToSTFT(), StretchAudioOnSTFT(), TimeshiftAudioOnSTFT(), FixSTFTDimension()])
-            bg_dataset = BackgroundNoiseDataset(os.path.join(args.data_dir, bkg), data_aug_transform)
+            data_aug_transform = transforms.Compose([ChangeAmplitude(), ChangeSpeedAndPitchAudio(
+            ), FixAudioLength(), ToSTFT(), StretchAudioOnSTFT(), TimeshiftAudioOnSTFT(), FixSTFTDimension()])
+            bg_dataset = BackgroundNoiseDataset(
+                os.path.join(args.data_dir, bkg), data_aug_transform)
             add_bg_noise = AddBackgroundNoiseOnSTFT(bg_dataset)
-            train_feature_transform = transforms.Compose([ToMelSpectrogramFromSTFT(n_mels=32), DeleteSTFT(), ToTensor('mel_spectrogram', 'input')])
-            train_dataset = SPEECH(args.data_dir, train= True,
-                                    transform=transforms.Compose([LoadAudio(),
-                                             data_aug_transform,
-                                             add_bg_noise,
-                                             train_feature_transform]),num_classes=args.num_class)
-            valid_feature_transform = transforms.Compose([ToMelSpectrogram(n_mels=32), ToTensor('mel_spectrogram', 'input')])
+            train_feature_transform = transforms.Compose([ToMelSpectrogramFromSTFT(
+                n_mels=32), DeleteSTFT(), ToTensor('mel_spectrogram', 'input')])
+            train_dataset = SPEECH(args.data_dir, train=True,
+                                   transform=transforms.Compose([LoadAudio(),
+                                                                 data_aug_transform,
+                                                                 add_bg_noise,
+                                                                 train_feature_transform]), num_classes=args.num_class)
+            valid_feature_transform = transforms.Compose(
+                [ToMelSpectrogram(n_mels=32), ToTensor('mel_spectrogram', 'input')])
             test_dataset = SPEECH(args.data_dir, train=False,
-                                    transform=transforms.Compose([LoadAudio(),
-                                             FixAudioLength(),
-                                             valid_feature_transform]),num_classes=args.num_class)
+                                  transform=transforms.Compose([LoadAudio(),
+                                                                FixAudioLength(),
+                                                                valid_feature_transform]), num_classes=args.num_class)
         elif args.data_set == 'common_voice':
             from utils.voice_data_loader import SpectrogramDataset
             train_dataset = SpectrogramDataset(audio_conf=model.audio_conf,
-                                           manifest_filepath=args.train_manifest,
-                                           labels=model.labels,
-                                           normalize=True,
-                                           speed_volume_perturb=args.speed_volume_perturb,
-                                           spec_augment=args.spec_augment,
-                                           data_mapfile=args.data_mapfile)
+                                               manifest_filepath=args.train_manifest,
+                                               labels=model.labels,
+                                               normalize=True,
+                                               speed_volume_perturb=args.speed_volume_perturb,
+                                               spec_augment=args.spec_augment,
+                                               data_mapfile=args.data_mapfile)
             test_dataset = SpectrogramDataset(audio_conf=model.audio_conf,
-                                          manifest_filepath=args.test_manifest,
-                                          labels=model.labels,
-                                          normalize=True,
-                                          speed_volume_perturb=False,
-                                          spec_augment=False)
+                                              manifest_filepath=args.test_manifest,
+                                              labels=model.labels,
+                                              normalize=True,
+                                              speed_volume_perturb=False,
+                                              spec_augment=False)
         else:
-            print('DataSet must be {}!'.format(['Mnist', 'Cifar', 'openImg', 'blog', 'stackoverflow', 'speech', 'yelp']))
+            print('DataSet must be {}!'.format(
+                ['Mnist', 'Cifar', 'openImg', 'blog', 'stackoverflow', 'speech', 'yelp']))
             sys.exit(-1)
 
     return model, train_dataset, test_dataset
